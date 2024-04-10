@@ -1,0 +1,35 @@
+Implementing the Discriminator
+
+
+class Discriminator(nn.Module):
+  def __init__(self):
+    super().__init__()
+    self.model = nn.Sequential(
+            nn.Linear(2, 256),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(256, 128),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(64, 1),
+            nn.Sigmoid(),
+        )
+  def forward(self, x):
+    output = self.model(x)
+    return output
+     
+
+discriminator = Discriminator()
+     
+You use .init() to build the model. First, you need to call super().init() to run .init() from nn.Module. The discriminator you’re using is an MLP neural network defined in a sequential way using nn.Sequential(). It has the following characteristics:
+
+Lines 5 and 6: The input is two-dimensional, and the first hidden layer is composed of 256 neurons with ReLU activation.
+
+Lines 8, 9, 11, and 12: The second and third hidden layers are composed of 128 and 64 neurons, respectively, with ReLU activation.
+
+Lines 14 and 15: The output is composed of a single neuron with sigmoidal activation to represent a probability.
+
+Lines 7, 10, and 13: After the first, second, and third hidden layers, you use dropout to avoid overfitting.
