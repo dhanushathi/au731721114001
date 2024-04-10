@@ -1,0 +1,21 @@
+mplementing the Generator
+
+
+class Generator(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.model = nn.Sequential(
+            nn.Linear(2, 16),
+            nn.ReLU(),
+            nn.Linear(16, 32),
+            nn.ReLU(),
+            nn.Linear(32, 2),
+        )
+
+    def forward(self, x):
+        output = self.model(x)
+        return output
+
+generator = Generator()
+     
+Here, generator represents the generator neural network. It’s composed of two hidden layers with 16 and 32 neurons, both with ReLU activation, and a linear activation layer with 2 neurons in the output
